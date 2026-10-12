@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refine Interiors — Desborough Family Bathroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <style>
+    /* ————————————————————————————————————————————
+       RESET & BASE
+       ———————————————————————————————————————————— */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #F6F3EF;
+      --bg-warm:   #EDEAE4;
+      --bg-stone:  #E5E1DA;
+      --fg:        #1A1917;
+      --fg-muted:  #6B6760;
+      --fg-light:  #9B9690;
+      --border:    #D6D2CB;
+      --border-lt: #E5E1DA;
+      --accent:    #3D3A35;
+      --white:     #FDFCFA;
+      --serif:     'Fraunces', 'Georgia', serif;
+      --sans:      'Inter', -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--fg); line-height: 1.6; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: var(--sans); }
+    input, textarea { font-family: var(--sans); }
+
+    /* ————————————————————————————————————————————
+       HEADER
+       ———————————————————————————————————————————— */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(246, 243, 239, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .header-inner {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-logo {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+    .header-nav { display: flex; align-items: center; gap: 2rem; }
+    .header-nav a {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--fg); }
+    .header-cta {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--fg);
+      color: var(--fg);
+      background: transparent;
+      transition: all 0.25s;
+    }
+    .header-cta:hover { background: var(--fg); color: var(--bg); }
+
+    @media (max-width: 768px) {
+      .header-nav { display: none; }
+      .header-inner { padding: 0 1.25rem; }
+    }
+
+    /* ————————————————————————————————————————————
+       HERO IMAGE
+       ———————————————————————————————————————————— */
+    .hero-image-section {
+      padding-top: 64px; /* header height */
+    }
+    .hero-image-wrap {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 480px;
+      max-height: 720px;
+      overflow: hidden;
+      background: var(--bg-stone);
+    }
+    .hero-image-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+    }
+    .hero-image-badge {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: rgba(246, 243, 239, 0.92);
+      backdrop-filter: blur(8px);
+      padding: 0.5rem 1rem;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+
+    /* ————————————————————————————————————————————
+       PROJECT INFO
+       ———————————————————————————————————————————— */
+    .project-info {
+      max-width: 1400px; margin: 0 auto;
+      padding: 3.5rem 2rem 2rem;
+    }
+    .project-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-bottom: 1rem;
+    }
+    .project-heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--fg);
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .project-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .project-meta-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-light);
+    }
+    .project-meta-value {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--fg);
+    }
+
+    /* ————————————————————————————————————————————
+       PROJECT EXCERPT
+       ———————————————————————————————————————————— */
+    .project-excerpt {
+      max-width: 1400px; margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+    }
+    .project-excerpt p {
+      max-width: 640px;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--fg-muted);
+    }
+
+    /* ————————————————————————————————————————————
+       GALLERY STRIP
+       ———————————————————————————————————————————— */
+    .gallery-strip {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .gallery-strip img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+
+    @media (max-width: 640px) {
+      .gallery-strip { grid-template-columns: 1fr; }
+    }
+
+    /* ————————————————————————————————————————————
+       TESTIMONIAL
+       ———————————————————————————————————————————— */
+    .testimonial-section {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .testimonial-inner {
+      border-top: 1px solid var(--border);
+      padding-top: 2.5rem;
+      max-width: 600px;
+    }
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--fg);
+      margin-bottom: 1rem;
+    }
+    .testimonial-author {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+    }
+
+    /* ————————————————————————————————————————————
+       ENQUIRY TRANSITION
+       ———————————————————————————————————————————— */
+    .enquiry-transition {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      padding: 5rem 2rem 0;
+    }
+    .enquiry-inner {
+      max-width: 1400px; margin: 0 auto;
+    }
+
+    /* Transition text */
+    .transition-text {
+      text-align: center;
+      padding-bottom: 4rem;
+    }
+    .transition-italic {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--fg-muted);
+      margin-bottom: 0.75rem;
+    }
+    .transition-heading {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.75rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--fg);
+    }
+
+    /* ————————————————————————————————————————————
+       ENQUIRY LAYOUT
+       ———————————————————————————————————————————— */
+    .enquiry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .enquiry-grid {
+        grid-template-columns: 42% 1fr;
+        gap: 5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .enquiry-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    /* LEFT COLUMN */
+    .enquiry-left {}
+    .enquiry-left-eyebrow {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg-light);
+      margin-bottom: 1rem;
+    }
+    .enquiry-left-heading {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--fg);
+      margin-bottom: 1.5rem;
+    }
+    .enquiry-left-body {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--fg-muted);
+      margin-bottom: 3rem;
+      max-width: 400px;
+    }
+
+    /* Steps */
+    .enquiry-steps {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .enquiry-step-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.75rem 0;
+    }
+    .enquiry-step-num {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--fg-light);
+      min-width: 1.5rem;
+    }
+    .enquiry-step-label {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--fg);
+    }
+
+    /* Contact (left) */
+    .enquiry-left-contact {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .enquiry-left-contact p {
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+      margin-bottom: 0.5rem;
+    }
+    .enquiry-left-contact a {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--fg);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+    .enquiry-left-contact a:hover { border-color: var(--fg); }
+
+    /* ————————————————————————————————————————————
+       FORM
+       ———————————————————————————————————————————— */
+    .enquiry-form {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+    }
+
+    .form-section {
+      margin-bottom: 2.25rem;
+    }
+    .form-section:last-of-type { margin-bottom: 2rem; }
+
+    .form-section-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-light);
+      margin-bottom: 0.5rem;
+    }
+    .form-section-heading {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--fg);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Selection tiles */
+    .selection-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .selection-tile {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 1rem 0.75rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .selection-tile:hover {
+      border-color: var(--fg-muted);
+      color: var(--fg);
+    }
+    .selection-tile.active {
+      border-color: var(--fg);
+      color: var(--fg);
+      background: var(--bg);
+    }
+
+    /* Inputs */
+    .form-input {
+      display: block;
+      width: 100%;
+      height: 56px;
+      padding: 0 1rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--fg);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input::placeholder { color: var(--fg-light); }
+    .form-input:focus { border-color: var(--fg); }
+
+    .form-textarea {
+      display: block;
+      width: 100%;
+      min-height: 120px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--fg);
+      background: transparent;
+      border: 1px solid var(--border);
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.2s;
+      line-height: 1.6;
+    }
+    .form-textarea::placeholder { color: var(--fg-light); }
+    .form-textarea:focus { border-color: var(--fg); }
+
+    /* Details grid */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .details-grid .form-input {
+      border-right: none;
+    }
+    .details-grid .form-input:nth-child(even) {
+      border-right: none;
+    }
+    .details-grid .form-input.full-width {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 640px) {
+      .details-grid { grid-template-columns: 1fr; }
+      .selection-tiles { grid-template-columns: 1fr; }
+    }
+
+    /* Timeline tiles */
+    .timeline-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .timeline-tile {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.65rem 0.75rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--fg-muted);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .timeline-tile:hover {
+      border-color: var(--fg-muted);
+      color: var(--fg);
+    }
+    .timeline-tile.active {
+      border-color: var(--fg);
+      color: var(--fg);
+      background: var(--bg);
+    }
+
+    @media (max-width: 640px) {
+      .timeline-tiles { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Divider */
+    .form-divider {
+      height: 1px;
+      background: var(--border-lt);
+      margin: 0.5rem 0;
+    }
+
+    /* ————————————————————————————————————————————
+       CTA
+       ———————————————————————————————————————————— */
+    .form-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      height: 56px;
+      background: var(--fg);
+      color: var(--bg);
+      border: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+    }
+    .form-cta:hover { background: var(--accent); }
+    .form-cta .arrow {
+      display: inline-block;
+      transition: transform 0.25s;
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .form-cta:hover .arrow { transform: translateX(4px); }
+
+    .form-reassurance {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--fg-light);
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* ————————————————————————————————————————————
+       SUCCESS STATE
+       ———————————————————————————————————————————— */
+    .success-overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      min-height: 400px;
+    }
+    .success-overlay .success-eyebrow {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg-light);
+      margin-bottom: 1rem;
+    }
+    .success-overlay h3 {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 300;
+      color: var(--fg);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .success-overlay p {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      max-width: 360px;
+      margin-bottom: 2rem;
+      line-height: 1.65;
+    }
+    .success-overlay .back-link {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .success-overlay .back-link:hover { border-color: var(--fg); }
+
+    .form-submitted .enquiry-form-content {
+      animation: fadeOut 0.4s ease forwards;
+    }
+    .form-submitted .success-overlay {
+      display: flex;
+      animation: fadeIn 0.5s ease 0.3s both;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; height: 0; overflow: hidden; padding: 0; margin: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ————————————————————————————————————————————
+       FOOTER
+       ———————————————————————————————————————————— */
+    .site-footer {
+      background: var(--fg);
+      color: var(--bg);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .footer-right {
+      font-size: 0.7rem;
+      color: rgba(246, 243, 239, 0.5);
+      letter-spacing: 0.05em;
+    }
+
+    /* ————————————————————————————————————————————
+       DEMO BANNER
+       ———————————————————————————————————————————— */
+    .demo-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--fg);
+      color: var(--bg);
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+    .demo-banner strong { font-weight: 600; }
+
+    /* ————————————————————————————————————————————
+       RESPONSIVE REFINEMENTS
+       ———————————————————————————————————————————— */
+    @media (max-width: 768px) {
+      .hero-image-wrap { height: 55vh; min-height: 360px; }
+      .project-info { padding: 2.5rem 1.25rem 1.5rem; }
+      .project-heading { font-size: 1.75rem; }
+      .project-excerpt { padding: 1.5rem 1.25rem 2.5rem; }
+      .gallery-strip { padding: 0 1.25rem 3rem; }
+      .testimonial-section { padding: 0 1.25rem 3rem; }
+      .enquiry-transition { padding: 3.5rem 1.25rem 0; }
+      .enquiry-grid { padding-bottom: 3rem; }
+      .enquiry-form { padding: 2rem 1.25rem; }
+      .transition-text { padding-bottom: 2.5rem; }
+      .form-cta { height: 52px; }
+      .site-footer { padding: 2rem 1.25rem; }
+      body { padding-bottom: 2.5rem; }
+    }
+  </style>
+<style id="editorial-refinement">
+:root{--serif:'Cormorant Garamond',Georgia,serif;--sans:'Manrope',Arial,sans-serif;--bg:#f7f5ef;--fg:#292d28;--fg-muted:#65675c;--fg-light:#747568;--border:#cfcbbf;--white:#fcfaf4}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{padding-bottom:0}
+.site-header{background:#f7f5ef;backdrop-filter:none;-webkit-backdrop-filter:none}
+.header-inner{height:82px;max-width:1440px;padding:0 5vw}
+.header-logo{font-size:14px;letter-spacing:.23em;font-weight:500}
+.header-nav a{font-size:10px;letter-spacing:.13em}.header-nav .header-cta:hover{color:var(--bg)}
+.hero-image-section{padding-top:82px}
+.hero-image-wrap{height:74vh;min-height:450px;max-height:820px}
+.hero-image-badge{background:#f7f5ef;backdrop-filter:none;padding:13px 20px;top:30px;right:5vw}
+.project-info,.project-excerpt,.gallery-strip,.testimonial-section{max-width:1440px}
+.project-info{padding:72px 7vw 20px;display:grid;grid-template-columns:1.6fr 1fr;gap:0 7vw}
+.project-eyebrow{grid-column:1/-1;margin-bottom:24px;font-size:10px}
+.project-heading{font-size:clamp(42px,4.6vw,70px);line-height:1.04;font-weight:400;letter-spacing:-.035em;max-width:760px}
+.project-meta{flex-direction:column;gap:24px;padding-top:10px;border-top:0;border-left:1px solid var(--border);padding-left:40px;align-self:center}
+.project-meta-label{font-size:9px;letter-spacing:.16em}
+.project-meta-value{font-size:13px;margin-top:4px}
+.project-excerpt{padding:8px 7vw 64px}
+.project-excerpt p{max-width:670px;font-size:14px;line-height:1.9}
+.gallery-strip{padding:0 7vw 78px;gap:24px;grid-template-columns:1.15fr 1fr;align-items:start}
+.gallery-strip img{aspect-ratio:4/5;object-fit:cover}
+.gallery-strip img:nth-child(2){margin-top:72px;aspect-ratio:4/5}
+.testimonial-section{padding:0 7vw 88px}
+.testimonial-inner{max-width:900px;margin:auto;text-align:center;border-top:0;padding-top:0}
+.testimonial-quote{font-size:clamp(27px,2.6vw,40px);line-height:1.25;letter-spacing:-.015em}
+.testimonial-author{font-size:10px;letter-spacing:.1em;margin-top:24px}
+.enquiry-transition{position:relative;isolation:isolate;background:#ddd7c9;padding:82px 7vw 0;border-top:0;overflow:hidden}
+.enquiry-transition:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23827964' filter='url(%23n)' opacity='.5' d='M0 0h300v300H0z'/%3E%3C/svg%3E")}
+.enquiry-inner{max-width:1238px}
+.transition-text{text-align:left;padding-bottom:56px;border-bottom:1px solid #bdb7a8;margin-bottom:56px;display:flex;justify-content:space-between;align-items:end;gap:30px}
+.transition-italic{font-style:normal;font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:.16em;max-width:220px;margin-bottom:8px;line-height:1.8}
+.transition-heading{font-size:clamp(50px,5.8vw,84px);font-weight:400;line-height:.96;letter-spacing:-.035em;width:60%}
+.enquiry-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:7vw;padding-bottom:90px;align-items:start}
+.enquiry-left{padding-top:12px}
+.enquiry-left-eyebrow{font-size:10px;color:#5e6255;margin-bottom:22px}
+.enquiry-left-heading{font-size:clamp(34px,3.2vw,46px);font-weight:400;line-height:1.06;letter-spacing:-.025em;margin-bottom:24px}
+.enquiry-left-body{font-size:13px;line-height:1.9;margin-bottom:34px;max-width:330px}
+.editorial-detail{margin:0 0 30px;max-width:340px}
+.editorial-detail img{width:100%;height:245px;object-fit:cover;object-position:center 45%}
+.editorial-detail figcaption{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.08em;margin-top:12px;color:#606457}
+.enquiry-steps{padding-top:14px;margin-bottom:25px;border-color:#bdb7a8;max-width:340px}
+.enquiry-step-row{padding:12px 0;border-bottom:1px solid #c7c1b3}
+.enquiry-step-label{font-size:12px}
+.enquiry-step-num{color:#6c6f60;font-size:10px}
+.enquiry-left-contact{border-top:0;padding-top:5px}
+.enquiry-left-contact p,.enquiry-left-contact a{font-size:12px;overflow-wrap:anywhere}
+.enquiry-form{padding:42px;background:#fcfaf4;border:1px solid #ede8dc;box-shadow:0 16px 45px #4b453414}
+.form-intro{padding-bottom:25px;border-bottom:1px solid #ded9cc;margin-bottom:28px}
+.form-intro h3{font-family:var(--serif);font-size:32px;font-weight:500;line-height:1.05;margin-bottom:9px}
+.form-intro p{font-size:11px;color:var(--fg-muted)}
+.form-section{margin-bottom:26px}
+.form-section-label{font-size:9px;letter-spacing:.15em;color:#76786a;margin-bottom:7px}
+.form-section-heading{font-size:23px;line-height:1.15;margin-bottom:15px;font-weight:500}
+.selection-tiles{gap:8px}
+.selection-tile,.timeline-tile{position:relative;border-color:#d9d5c9;border-radius:0;font-size:11px;min-height:46px;padding:12px 8px;font-weight:500}
+.selection-tile.active,.timeline-tile.active{background:#3d493d;color:#fcfaf4;border-color:#3d493d}
+.selection-tile.active:after,.timeline-tile.active:after{content:'✓';margin-left:7px;font-size:10px}
+.selection-tile:hover,.timeline-tile:hover{border-color:#3d493d}
+.form-input{height:48px;padding:0 12px;background:#f3f0e8;border:1px solid #d9d5c9;font-size:12px;border-radius:0}
+.form-textarea{min-height:102px;padding:12px;background:#f3f0e8;border-color:#d9d5c9;font-size:12px;border-radius:0}
+.form-input::placeholder,.form-textarea::placeholder{color:#76786d}
+.form-input:focus,.form-textarea:focus{border-color:#3d493d;outline:2px solid #3d493d22;outline-offset:2px}
+.details-grid{gap:14px 12px}
+.field-label{font-size:10px;display:block;margin-bottom:6px}
+.details-grid label:last-child{grid-column:1/-1}
+.form-divider{margin:0 0 22px}
+.form-cta{background:#3d493d;height:56px;font-size:10px;letter-spacing:.13em;justify-content:space-between;padding:0 22px}
+.form-cta:hover{background:#29392c}
+button:focus-visible,a:focus-visible{outline:2px solid #71785d;outline-offset:4px}
+.form-reassurance{font-size:10px;line-height:1.7;color:#74766a}
+.form-submitted .enquiry-form-content{display:none}
+.success-overlay{padding:45px 0}
+.site-footer{padding:38px 7vw;background:#292f29}
+.demo-banner{position:static;background:#222821;font-size:10px;padding:12px}
+@media(max-width:1100px){.enquiry-grid{gap:40px;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}.enquiry-form{padding:30px}.project-meta{padding-left:28px}.header-nav{gap:20px}}
+@media(max-width:800px){.header-inner{height:70px}.hero-image-section{padding-top:70px}.hero-image-wrap{height:60vh;min-height:400px}.project-info{padding:50px 6vw 20px;grid-template-columns:1fr}.project-heading{font-size:52px}.project-meta{border-left:0;border-top:1px solid var(--border);padding:24px 0 0;flex-direction:row;gap:26px}.project-excerpt{padding:15px 6vw 45px}.gallery-strip{padding:0 6vw 55px;gap:18px}.gallery-strip img:nth-child(2){margin-top:40px}.testimonial-section{padding:0 6vw 60px}.enquiry-transition{padding:60px 6vw 0}.transition-text{margin-bottom:40px;padding-bottom:35px}.transition-heading{font-size:62px}.enquiry-grid{grid-template-columns:1fr;gap:38px;padding-bottom:60px}.enquiry-left{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}.enquiry-left-eyebrow,.enquiry-left-heading,.enquiry-left-body{grid-column:1}.editorial-detail{grid-column:2;grid-row:1/5;margin:0}.editorial-detail img{height:280px}.enquiry-steps{grid-column:1}.enquiry-left-contact{grid-column:2;align-self:end}.enquiry-form{padding:38px}.selection-tiles{grid-template-columns:repeat(3,1fr)}.details-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.header-logo{font-size:11px}.hero-image-wrap{min-height:360px;height:55vh}.hero-image-badge{top:20px;font-size:8px}.project-info{padding-top:38px}.project-heading{font-size:40px}.project-meta{gap:20px;display:grid;grid-template-columns:1fr 1fr}.project-meta-item:first-child{grid-column:1/-1}.project-excerpt p{font-size:13px}.gallery-strip{grid-template-columns:1fr;gap:18px}.gallery-strip img{aspect-ratio:4/5}.gallery-strip img:nth-child(2){margin-top:0;aspect-ratio:4/3}.testimonial-quote{font-size:29px}.enquiry-transition{padding:44px 6vw 0}.transition-text{display:block;padding-bottom:30px;margin-bottom:30px}.transition-italic{max-width:none;margin-bottom:20px;font-size:9px}.transition-heading{font-size:54px;width:100%}.enquiry-left{display:block}.enquiry-left-heading{font-size:36px}.enquiry-left-body{margin-bottom:24px}.editorial-detail{max-width:none;margin-bottom:24px}.editorial-detail img{height:220px}.enquiry-steps{max-width:none}.enquiry-left-contact{padding-top:8px}.enquiry-form{padding:27px 20px}.form-intro h3{font-size:30px}.details-grid{grid-template-columns:1fr}.details-grid label:last-child{grid-column:auto}.form-section-heading{font-size:22px}.timeline-tile{font-size:10px;padding:12px 5px}.form-cta{font-size:9px;letter-spacing:.08em;padding:0 14px}.footer-inner{display:block}.footer-right{display:block;margin-top:12px;font-size:10px}.enquiry-grid{padding-bottom:44px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+</style></head>
+<body>
+
+  <!-- ——— HEADER ——— -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="https://refineinteriors.co.uk" class="header-logo">Refine Interiors</a>
+      <nav class="header-nav">
+        <a href="https://refineinteriors.co.uk/case-studies">Work</a>
+        <a href="https://refineinteriors.co.uk/kitchens">Kitchens</a>
+        <a href="https://refineinteriors.co.uk/bathrooms">Bathrooms</a>
+        <a href="https://refineinteriors.co.uk/about">About</a>
+        <a href="#enquiry" class="header-cta">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ——— HERO IMAGE ——— -->
+  <section class="hero-image-section">
+    <div class="hero-image-wrap">
+      <img
+        src="https://refineinteriors.co.uk/__l5e/assets-v1/74a5e55a-52b9-4db3-8067-3e31d3e82473/after-bathroom-1.jpg"
+        alt="Desborough family bathroom after renovation — warm stone-effect tiling, anthracite vanity and P-shaped shower bath"
+        onerror="this.src='https://refineinteriors.co.uk/__l5e/assets-v1/7c1ae7f1-f16d-4feb-9f8b-9dc782a26f21/desborough-after-1.jpg'"
+      />
+      <span class="hero-image-badge">Case study</span>
+    </div>
+  </section>
+
+  <!-- ——— PROJECT INFO ——— -->
+  <section class="project-info">
+    <p class="project-eyebrow">Case study · Desborough</p>
+    <h1 class="project-heading">A dated family bathroom and cloakroom, reset in warm stone.</h1>
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <span class="project-meta-label">Location</span>
+        <span class="project-meta-value">Desborough, Northamptonshire</span>
+      </div>
+      <div class="project-meta-item">
+        <span class="project-meta-label">Timeframe</span>
+        <span class="project-meta-value">15 days on site</span>
+      </div>
+      <div class="project-meta-item">
+        <span class="project-meta-label">Investment</span>
+        <span class="project-meta-value">£10,500</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— EXCERPT ——— -->
+  <section class="project-excerpt">
+    <p>We reset both rooms around the same warm stone-effect tile so the two spaces read as part of the same house. In the main bathroom, a new P-shaped shower bath with a curved glass screen and a brushed steel rainfall shower replaced the old enclosure. Recessed lit niches, a fitted anthracite vanity and matching WC unit brought in the storage the room was missing.</p>
+  </section>
+
+  <!-- ——— GALLERY ——— -->
+  <section class="gallery-strip">
+    <img
+      src="https://refineinteriors.co.uk/__l5e/assets-v1/7c1ae7f1-f16d-4feb-9f8b-9dc782a26f21/desborough-after-1.jpg"
+      alt="Desborough bathroom — anthracite vanity and stone-effect wall tiles"
+    />
+    <img
+      src="https://refineinteriors.co.uk/__l5e/assets-v1/134ee25c-1a49-4a7f-a3b4-3f3900e49fdf/desborough-after-2.jpg"
+      alt="Desborough bathroom — P-shaped shower bath with brushed steel rainfall head"
+    />
+  </section>
+
+  <!-- ——— TESTIMONIAL ——— -->
+  <section class="testimonial-section">
+    <div class="testimonial-inner">
+      <p class="testimonial-quote">"Nathan and the team were so clean and tidy throughout, and completely professional from start to finish. We absolutely love our new en-suite — the storage they built in has made such a difference."</p>
+      <p class="testimonial-author">Christine S — Desborough, Northamptonshire</p>
+    </div>
+  </section>
+
+  <!-- ——— ENQUIRY SECTION ——— -->
+  <section class="enquiry-transition" id="enquiry">
+    <div class="enquiry-inner">
+
+      <!-- Transition -->
+      <div class="transition-text">
+        <p class="transition-italic">Inspired by something you've seen?</p>
+        <h2 class="transition-heading">Tell us about<br />your space.</h2>
+      </div>
+
+      <!-- Two-column grid -->
+      <div class="enquiry-grid">
+
+        <!-- LEFT -->
+        <div class="enquiry-left">
+          <p class="enquiry-left-eyebrow">Let's talk</p>
+          <h3 class="enquiry-left-heading">A considered space.<br /><em>A simple beginning.</em></h3>
+          <p class="enquiry-left-body">If you're planning a kitchen or bathroom renovation, tell us a few basics below. It gives Nathan enough context to understand the project before getting back to you.</p>
+
+          <figure class="editorial-detail"><img src="https://refineinteriors.co.uk/__l5e/assets-v1/74a5e55a-52b9-4db3-8067-3e31d3e82473/after-bathroom-1.jpg" alt="Warm stone and carefully finished details in the Desborough bathroom" /><figcaption><span>THE DESBOROUGH PROJECT</span><span>Warmth in every detail</span></figcaption></figure><div class="enquiry-steps">
+            <div class="enquiry-step-row">
+              <span class="enquiry-step-num">01</span>
+              <span class="enquiry-step-label">A few project details</span>
+            </div>
+            <div class="enquiry-step-row">
+              <span class="enquiry-step-num">02</span>
+              <span class="enquiry-step-label">Nathan gets back to you</span>
+            </div>
+            <div class="enquiry-step-row">
+              <span class="enquiry-step-num">03</span>
+              <span class="enquiry-step-label">No obligation</span>
+            </div>
+          </div>
+
+          <div class="enquiry-left-contact">
+            <p>Prefer to speak directly?</p>
+            <a href="tel:07972483147">07972 483147</a><br />
+            <a href="mailto:refinehomeinteriors@gmail.com" style="margin-top: 0.25rem;">refinehomeinteriors@gmail.com</a>
+          </div>
+        </div>
+
+        <!-- RIGHT — FORM -->
+        <div id="formContainer">
+          <form id="enquiryForm" class="enquiry-form">
+            <div class="enquiry-form-content"><div class="form-intro"><h3>Your project begins here.</h3><p>Inspired by Desborough · A few details to start the conversation</p></div>
+
+              <!-- 01 PROJECT -->
+              <div class="form-section">
+                <p class="form-section-label">01 / Project</p>
+                <p class="form-section-heading">What are you planning?</p>
+                <div class="selection-tiles" id="projectTiles">
+                  <button type="button" class="selection-tile active" data-value="Bathroom">Bathroom</button>
+                  <button type="button" class="selection-tile" data-value="Kitchen">Kitchen</button>
+                  <button type="button" class="selection-tile" data-value="Other">Other</button>
+                </div>
+              </div>
+
+              <!-- 02 LOCATION -->
+              <div class="form-section">
+                <p class="form-section-label">02 / Location</p>
+                <label for="locationInput" class="form-section-heading" style="display:block">Where is the property?</label>
+                <input type="text" class="form-input" placeholder="Town or postcode" id="locationInput" />
+              </div>
+
+              <!-- 03 THE SPACE -->
+              <div class="form-section">
+                <p class="form-section-label">03 / The space</p>
+                <label for="spaceInput" class="form-section-heading" style="display:block">What are you hoping to change?</label>
+                <textarea class="form-textarea" placeholder="A tired family bathroom, looking to create a walk-in shower and improve storage..." id="spaceInput"></textarea>
+              </div>
+
+              <!-- 04 TIMELINE -->
+              <div class="form-section">
+                <p class="form-section-label">04 / Timeline</p>
+                <p class="form-section-heading">When are you hoping to start?</p>
+                <div class="timeline-tiles" id="timelineTiles">
+                  <button type="button" class="timeline-tile" data-value="asap">As soon as possible</button>
+                  <button type="button" class="timeline-tile" data-value="3months">Within 3 months</button>
+                  <button type="button" class="timeline-tile" data-value="6months">3–6 months</button>
+                  <button type="button" class="timeline-tile" data-value="exploring">Just exploring</button>
+                </div>
+              </div>
+
+              <!-- 05 DETAILS -->
+              <div class="form-section">
+                <p class="form-section-label">05 / Your details</p>
+                <div class="details-grid">
+                  <label><span class="field-label">Name</span><input type="text" class="form-input" placeholder="Your name" id="nameInput" autocomplete="name" required /></label>
+                  <label><span class="field-label">Phone · optional</span><input type="tel" class="form-input" placeholder="Your phone number" id="phoneInput" autocomplete="tel" /></label>
+                  <label><span class="field-label">Email</span><input type="email" class="form-input full-width" placeholder="Your email address" id="emailInput" autocomplete="email" required /></label>
+                </div>
+              </div>
+
+              <div class="form-divider"></div>
+
+              <!-- CTA -->
+              <button type="submit" class="form-cta">
+                Tell us about your project <span class="arrow">→</span>
+              </button>
+              <p class="form-reassurance">No obligation. Just enough information for us to understand what you're planning.</p>
+
+            </div><!-- /enquiry-form-content -->
+
+            <!-- SUCCESS -->
+            <div class="success-overlay" role="status" aria-live="polite">
+              <p class="success-eyebrow">Thank you</p>
+              <h3>A lovely place to begin.</h3>
+              <p>This is a preview confirmation. Your details have not been sent or stored. On the live page, Nathan would get back to you to discuss your space.</p>
+              <a href="#" class="back-link" onclick="location.reload(); return false;">Back to case study →</a>
+            </div>
+          </form>
+        </div>
+
+      </div><!-- /enquiry-grid -->
+    </div><!-- /enquiry-inner -->
+  </section>
+
+  <!-- ——— FOOTER ——— -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo">Refine Interiors</span>
+      <span class="footer-right">Bespoke kitchens & bathrooms · Northamptonshire</span>
+    </div>
+  </footer>
+
+  <!-- ——— DEMO BANNER ——— -->
+  <div class="demo-banner">
+    <strong>Preview only</strong> — this form does not submit real data.
+  </div>
+
+  <!-- ——— SCRIPT ——— -->
+  <script>
+    document.querySelectorAll('.selection-tile, .timeline-tile').forEach(t => t.setAttribute('aria-pressed', String(t.classList.contains('active'))));
+// Project type tiles
+    document.querySelectorAll('#projectTiles .selection-tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        document.querySelectorAll('#projectTiles .selection-tile').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed', 'false'); });
+        tile.classList.add('active'); tile.setAttribute('aria-pressed', 'true');
+      });
+    });
+
+    // Timeline tiles
+    document.querySelectorAll('#timelineTiles .timeline-tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        document.querySelectorAll('#timelineTiles .timeline-tile').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed', 'false'); });
+        tile.classList.add('active'); tile.setAttribute('aria-pressed', 'true');
+      });
+    });
+
+    // Form submission
+    document.getElementById('enquiryForm').addEventListener('submit', e => {
+      e.preventDefault();
+      document.getElementById('formContainer').classList.add('form-submitted');
+      // Scroll the success into view
+      setTimeout(() => {
+        document.querySelector('.success-overlay').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>
+
+
